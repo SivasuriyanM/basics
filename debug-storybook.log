@@ -1,28 +1,43 @@
-[20:17:20.621] [INFO] storybook v10.2.3
-[20:17:21.083] [ERROR] [38;2;241;97;97mSB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your [33m.storybook\main.js[39m file.
+[08:50:06.075] [INFO] storybook v10.2.3
+[08:50:06.779] [DEBUG] Getting package.json info for /workspaces/basics/package.json...
+[08:50:07.959] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
+[08:50:07.960] [INFO] Starting...
+[08:50:08.039] [ERROR] [38;2;241;97;97mError: 
+You installed esbuild for another platform than the one you're currently using.
+This won't work because esbuild is written with native code and needs to
+install a platform-specific binary executable.
 
-Original error:
-[37mTypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".scss" for \styles\main.scss
-    at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:219:9)
-    at defaultGetFormat (node:internal/modules/esm/get_format:245:36)
-    at defaultLoad (node:internal/modules/esm/load:120:22)
-    at async nextLoad (node:internal/modules/esm/hooks:748:22)
-    at async nextLoad (node:internal/modules/esm/hooks:748:22)
-    at async Hooks.load (node:internal/modules/esm/hooks:385:20)
-    at async handleMessage (node:internal/modules/esm/worker:199:18)[39m[39m
-    at loadMainConfig (file:///C:/Users/msiva/Desktop/Accenture/Practice/basics/node_modules/storybook/dist/_node-chunks/chunk-MVRFS4XG.js:11707:11)
-    at async buildDevStandalone (file:///C:/Users/msiva/Desktop/Accenture/Practice/basics/node_modules/storybook/dist/core-server/index.js:7518:16)
-    at async withTelemetry (file:///C:/Users/msiva/Desktop/Accenture/Practice/basics/node_modules/storybook/dist/_node-chunks/chunk-JS7T7TRL.js:218:12)
-    at async dev (file:///C:/Users/msiva/Desktop/Accenture/Practice/basics/node_modules/storybook/dist/bin/core.js:2734:3)
-    at async _Command.<anonymous> (file:///C:/Users/msiva/Desktop/Accenture/Practice/basics/node_modules/storybook/dist/bin/core.js:2801:92)
-[20:17:21.116] [WARN] Broken build, fix the error above.
+Specifically the "@esbuild/win32-x64" package is present but this platform
+needs the "@esbuild/linux-x64" package instead. People often get into this
+situation by installing esbuild on Windows or macOS and copying "node_modules"
+into a Docker image that runs Linux, or by copying "node_modules" between
+Windows and WSL environments.
+
+If you are installing with npm, you can try not copying the "node_modules"
+directory when you copy the files over, and running "npm ci" or "npm install"
+on the destination platform after the copy. Or you could consider using yarn
+instead of npm which has built-in support for installing a package on multiple
+platforms simultaneously.
+
+If you are installing with yarn, you can try listing both this platform and the
+other platform in your ".yarnrc.yml" file using the "supportedArchitectures"
+feature: https://yarnpkg.com/configuration/yarnrc/#supportedArchitectures
+Keep in mind that this means multiple copies of esbuild will be present.
+
+Another alternative is to use the "esbuild-wasm" package instead, which works
+the same way on all platforms. But it comes with a heavy performance cost and
+can sometimes be 10x slower than the "esbuild" package, so you may also not
+want to do that.
+[39m
+    at generateBinPath (./node_modules/esbuild/lib/main.js:1739:17)
+    at esbuildCommandAndArgs (./node_modules/esbuild/lib/main.js:1820:33)
+    at ensureServiceIsRunning (./node_modules/esbuild/lib/main.js:1977:25)
+    at build (./node_modules/esbuild/lib/main.js:1876:26)
+    at starter (file://./node_modules/storybook/dist/_node-chunks/builder-manager-MUPQ4YLN.js:1504:81)
+    at starter.next (<anonymous>)
+    at Module.start (file://./node_modules/storybook/dist/_node-chunks/builder-manager-MUPQ4YLN.js:1613:34)
+    at async storybookDevServer (file://./node_modules/storybook/dist/core-server/index.js:7200:54)
+    at async buildOrThrow (file://./node_modules/storybook/dist/core-server/index.js:4504:12)
+    at async buildDevStandalone (file://./node_modules/storybook/dist/core-server/index.js:7577:66)
+[08:50:08.053] [WARN] Broken build, fix the error above.
 You may need to refresh the browser.
-[20:17:21.201] [WARN]   Failed to load preset: "C:/Users/msiva/Desktop/Accenture/Practice/basics/.storybook/main.js"
-[20:17:21.203] [ERROR] TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".scss" for .\styles\main.scss
-    at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:219:9)
-    at defaultGetFormat (node:internal/modules/esm/get_format:245:36)
-    at defaultLoad (node:internal/modules/esm/load:120:22)
-    at async nextLoad (node:internal/modules/esm/hooks:748:22)
-    at async nextLoad (node:internal/modules/esm/hooks:748:22)
-    at async Hooks.load (node:internal/modules/esm/hooks:385:20)
-    at async handleMessage (node:internal/modules/esm/worker:199:18)
