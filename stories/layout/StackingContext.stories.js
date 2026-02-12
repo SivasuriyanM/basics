@@ -33,7 +33,7 @@ export const Playground = ({
           --parent-transform: ${parentTransform};
         "
       >
-        Parent (Stacking Context?)
+        Parent (Stacking Context)
         <div
           class="stacking-box box-a"
           style="--z-a: ${zA}"

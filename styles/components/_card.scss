@@ -1,0 +1,39 @@
+@use "../abstracts/tokens" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  padding: $space-4;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  background-color: #fff;
+
+  &__header {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  &__body {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: $space-2;
+  }
+
+  &--interactive {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}

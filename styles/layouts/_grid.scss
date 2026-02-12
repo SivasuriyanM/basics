@@ -1,0 +1,64 @@
+/* ==================================
+   GRID SYSTEM LAB
+   Purpose: Two-dimensional layout
+=================================== */
+
+.grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Grid container */
+.grid-container {
+  display: grid;
+
+  grid-template-columns: var(--columns);
+  grid-template-rows: var(--rows);
+  gap: var(--gap);
+
+  min-height: 300px;
+
+  border: 3px dashed #333;
+  padding: 16px;
+  background: #f8f8f8;
+}
+
+/* Grid items */
+.grid-item {
+  background: #bde0fe;
+  border: 2px solid #333;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+/* Dashboard layout demo */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 80px 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar content";
+  height: 400px;
+  gap: 8px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #ffadad;
+}
+
+.header {
+  grid-area: header;
+  background: #ffd6a5;
+}
+
+.content {
+  grid-area: content;
+  background: #caffbf;
+}

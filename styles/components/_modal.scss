@@ -1,0 +1,41 @@
+@use "../abstracts/tokens" as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+  z-index: $z-modal;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #fff;
+  width: 100%;
+  max-width: 500px;
+
+  border-radius: 8px;
+  padding: $space-4;
+
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.modal__header {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.modal__body {
+  font-size: 14px;
+}
+
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-2;
+}

@@ -1,0 +1,19 @@
+@use "../abstracts/tokens" as *;
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: $space-3;
+
+  &--sm {
+    max-width: $container-sm;
+  }
+
+  &--md {
+    max-width: $container-md;
+  }
+
+  &--lg {
+    max-width: $container-lg;
+  }
+}

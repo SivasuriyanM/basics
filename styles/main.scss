@@ -1,8 +1,20 @@
+@use "./abstracts/mixins";
+@use "./abstracts/tokens";
+
 @use "./base/reset";
 
 @use "./layouts/box-model";
 @use "./layouts/display";
 @use "./layouts/positioning";
 @use "./layouts/stacking";
+@use "./layouts/flexbox";
+@use "./layouts/grid";
+@use "./layouts/containers";
+@use "./layouts/grid-system";
+
+@use "./components/card";
+@use "./components/modal"
+
+
 
 
