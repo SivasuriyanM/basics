@@ -1,0 +1,48 @@
+/* ================================
+   STACKING CONTEXT DEMO
+   Purpose: Visualize z-index rules
+================================ */
+
+.stacking-wrapper {
+  position: relative;
+  height: 400px;
+  border: 2px dashed #999;
+  padding: 16px;
+}
+
+/* Parent that MAY create stacking context */
+.stacking-parent {
+  position: relative;
+  z-index: var(--parent-z);
+  transform: var(--parent-transform);
+  background: #e0e0e0;
+  padding: 16px;
+}
+
+/* Child boxes */
+.stacking-box {
+  position: absolute;
+  width: 140px;
+  height: 80px;
+  border: 2px solid #333;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+.box-a {
+  top: 40px;
+  left: 40px;
+  background: #ffadad;
+  z-index: var(--z-a);
+}
+
+.box-b {
+  top: 80px;
+  left: 80px;
+  background: #9bf6ff;
+  z-index: var(--z-b);
+}
